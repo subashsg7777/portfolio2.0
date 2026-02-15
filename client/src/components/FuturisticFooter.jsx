@@ -61,10 +61,31 @@ const FuturisticFooter = () => {
         >
           {/* Brand section */}
           <motion.div variants={itemVariants} className="md:col-span-1 space-y-4">
-            <div className="flex items-center gap-2 text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400">
-              <div className="w-8 h-8 bg-gradient-to-br from-cyan-500 via-blue-500 to-purple-500 rounded-lg shadow-lg shadow-cyan-500/50" />
-              SUBASH
-            </div>
+            <motion.a
+              className="flex items-center gap-3 relative group w-fit"
+              whileHover={{ scale: 1.05 }}
+            >
+              {/* Glitch Effect Background */}
+              <div className="absolute -inset-2 bg-gradient-to-r from-pink-600 via-magenta-600 to-cyan-600 rounded-lg opacity-0 group-hover:opacity-20 blur transition-all duration-300 pointer-events-none" />
+              
+              {/* Icon Box */}
+              <div className="relative w-10 h-10 bg-gradient-to-br from-pink-500 via-magenta-500 to-cyan-500 rounded-md shadow-lg shadow-pink-500/70 transform group-hover:scale-110 transition-transform">
+                <div className="absolute inset-0.5 bg-slate-950 rounded-sm" />
+                <div className="absolute inset-1 bg-gradient-to-br from-pink-500/20 to-cyan-500/20 rounded-sm flex items-center justify-center">
+                  <span className="text-xs font-black text-pink-400">▧</span>
+                </div>
+              </div>
+
+              {/* Text */}
+              <div className="relative flex flex-col">
+                <span className="text-sm tracking-widest font-mono font-bold text-pink-400" style={{ textShadow: '0 0 10px rgba(236, 72, 153, 0.8), 0 0 20px rgba(168, 85, 247, 0.4)' }}>
+                  &lt; SUBASH /&gt;
+                </span>
+                <span className="text-xs tracking-wider font-mono text-cyan-300" style={{ textShadow: '0 0 5px rgba(0, 255, 136, 0.6)' }}>
+                  DEV.ARCHITECT
+                </span>
+              </div>
+            </motion.a>
             <p className="text-slate-400 text-sm">
               Full Stack Developer passionate about creating beautiful and functional digital experiences.
             </p>
