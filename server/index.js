@@ -52,20 +52,52 @@ app.use(express.json());
 // MongoDB Connection
 const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/portfolio';
 
+console.log('🔄 Starting MongoDB connection...');
+console.log('URI:', mongoUri.replace(/:[^:]*@/, ':****@')); // Log masked URI
+
 mongoose.connect(mongoUri, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 15000,
+  socketTimeoutMS: 45000,
+  connectTimeoutMS: 15000,
+  maxPoolSize: 10,
+  minPoolSize: 2,
+  retryWrites: true,
+  retryReads: true,
+  w: 'majority',
+  family: 4 // Force IPv4
 })
   .then(() => {
-    console.log('Connected to MongoDB');
+    console.log('✅ MongoDB connected successfully');
   })
   .catch((err) => {
-    console.error('Error connecting to MongoDB:', err.message);
+    console.error('❌ MongoDB connection failed:', err.message);
+    console.error('Full error:', err);
+    // Don't exit, allow graceful degradation
   });
+
+// Monitor connection
+mongoose.connection.on('connected', () => {
+  console.log('✅ Mongoose connected to MongoDB');
+});
+
+mongoose.connection.on('error', (err) => {
+  console.error('❌ Mongoose connection error:', err.message);
+});
+
+mongoose.connection.on('disconnected', () => {
+  console.warn('⚠️ Mongoose disconnected from MongoDB');
+});
 
 // Routes
 app.get('/api/health', (req, res) => {
-  res.json({ message: 'Portfolio API is running!' });
+  const dbStatus = mongoose.connection.readyState === 1 ? 'connected' : 'disconnected';
+  res.json({ 
+    message: 'Portfolio API is running!',
+    database: dbStatus,
+    timestamp: new Date().toISOString()
+  });
 });
 
 // Get all projects
@@ -74,8 +106,11 @@ app.get('/api/projects', async (req, res) => {
     const projects = await Project.find().sort({ id: 1 });
     res.json(projects);
   } catch (error) {
-    console.error('Error fetching projects:', error);
-    res.status(500).json({ error: 'Failed to fetch projects' });
+    console.error('Error fetching projects:', error.message);
+    res.status(500).json({ 
+      error: 'Failed to fetch projects',
+      message: error.message
+    });
   }
 });
 
