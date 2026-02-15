@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaTwitter, FaCode, FaHeart, FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaTwitter, FaCode, FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
 
 const FuturisticFooter = () => {
   const currentYear = new Date().getFullYear();
@@ -164,9 +164,6 @@ const FuturisticFooter = () => {
           <motion.p variants={itemVariants} className="text-slate-500 text-sm text-center md:text-left">
             © {currentYear} SUBASH. All rights reserved.
           </motion.p>
-          <motion.div variants={itemVariants} className="text-slate-500 text-sm flex items-center gap-1">
-            Made with <FaHeart className="text-red-500" /> using React | Three.js | Framer Motion
-          </motion.div>
           <motion.p variants={itemVariants} className="text-slate-500 text-sm text-center md:text-right">
             Designed & Developed with precision for the future
           </motion.p>
