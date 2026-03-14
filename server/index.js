@@ -122,7 +122,19 @@ app.post('/api/admin/projects', async (req, res) => {
     
     // Validate required fields
     const requiredFields = ['id', 'title', 'subtitle', 'period', 'description', 'image', 'technologies', 'features', 'github', 'demo', 'icon', 'color'];
-    const missingFields = requiredFields.filter(field => !projectData[field]);
+    const missingFields = requiredFields.filter(field => {
+      const value = projectData[field];
+
+      if (Array.isArray(value)) {
+        return value.length === 0;
+      }
+
+      if (typeof value === 'string') {
+        return value.trim() === '';
+      }
+
+      return value === undefined || value === null;
+    });
     
     if (missingFields.length > 0) {
       return res.status(400).json({ 
