@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaArrowLeft, FaCheckCircle } from 'react-icons/fa';
 import axios from 'axios';
+import { getApiBaseUrl } from '../utils/api';
 
 const AdminAddProject = () => {
   const [formData, setFormData] = useState({
@@ -65,8 +66,8 @@ const AdminAddProject = () => {
     setIsSubmitting(true);
 
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-      const response = await axios.post(`${apiUrl}/api/projects`, formData);
+      const apiUrl = getApiBaseUrl();
+      const response = await axios.post(`${apiUrl}/api/admin/projects`, formData);
       setSubmitStatus('success');
       setFormData({
         title: '',

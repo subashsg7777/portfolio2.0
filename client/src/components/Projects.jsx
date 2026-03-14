@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt, FaShoppingCart, FaGavel, FaStar, FaBell, FaCode, FaRecycle, FaShoppingBag } from 'react-icons/fa';
 import { SiMongodb, SiExpress, SiReact, SiNodedotjs } from 'react-icons/si';
+import { getApiBaseUrl } from '../utils/api';
 
 const Projects = () => {
   const [activeProject, setActiveProject] = useState(0);
@@ -13,7 +14,8 @@ const Projects = () => {
     const fetchProjects = async () => {
       try {
         setLoading(true);
-        const response = await fetch('/api/projects');
+        const apiUrl = getApiBaseUrl();
+        const response = await fetch(`${apiUrl}/api/projects`);
         
         if (!response.ok) {
           throw new Error('Failed to fetch projects');

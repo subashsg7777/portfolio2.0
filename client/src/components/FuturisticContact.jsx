@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaPaperPlane, FaCheckCircle } from 'react-icons/fa';
 import axios from 'axios';
+import { getApiBaseUrl } from '../utils/api';
 
 const FuturisticContact = () => {
   const [formData, setFormData] = useState({
@@ -66,7 +67,7 @@ const FuturisticContact = () => {
     setIsSubmitting(true);
 
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      const apiUrl = getApiBaseUrl();
       const response = await axios.post(`${apiUrl}/api/contact`, formData);
       setSubmitStatus('success');
       setFormData({ name: '', email: '', message: '' });

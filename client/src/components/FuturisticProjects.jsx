@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt, FaStar, FaShoppingCart, FaGavel, FaRecycle, FaShoppingBag } from 'react-icons/fa';
 import { SiMongodb, SiExpress, SiReact, SiNodedotjs, SiSpringboot } from 'react-icons/si';
+import { getApiBaseUrl } from '../utils/api';
 
 const FuturisticProjects = () => {
   const [activeProject, setActiveProject] = useState(0);
@@ -14,8 +15,7 @@ const FuturisticProjects = () => {
     const fetchProjects = async () => {
       try {
         setLoading(true);
-        // Use environment variable for API URL, fallback to localhost for development
-        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+        const apiUrl = getApiBaseUrl();
         const response = await fetch(`${apiUrl}/api/projects`);
         if (!response.ok) throw new Error('Failed to fetch projects');
         const data = await response.json();
@@ -23,7 +23,7 @@ const FuturisticProjects = () => {
         setError(null);
       } catch (err) {
         console.error('Error fetching projects:', err);
-        setError('Failed to load projects. Make sure the server is running.');
+        setError('Failed to load projects. Please try again in a moment.');
       } finally {
         setLoading(false);
       }
