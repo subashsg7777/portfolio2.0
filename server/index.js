@@ -16,6 +16,7 @@ const allowedOrigins = [
   'http://127.0.0.1:3000',
   'http://127.0.0.1:5173',
   process.env.FRONTEND_URL,
+  'https://portfolio2-0-5bu0.onrender.com',
   'https://portfolio2-0.vercel.app',
   /\.vercel\.app$/  // Allow all Vercel preview deployments
 ];
