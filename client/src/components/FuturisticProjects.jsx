@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt, FaStar, FaShoppingCart, FaGavel, FaRecycle, FaShoppingBag } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaStar, FaShoppingCart, FaGavel, FaRecycle, FaShoppingBag, FaTag } from 'react-icons/fa';
 import { SiMongodb, SiExpress, SiReact, SiNodedotjs, SiSpringboot } from 'react-icons/si';
 import { getApiBaseUrl } from '../utils/api';
 
@@ -59,7 +59,8 @@ const FuturisticProjects = () => {
     "FaShoppingCart": FaShoppingCart,
     "FaGavel": FaGavel,
     "FaRecycle": FaRecycle,
-    "FaShoppingBag": FaShoppingBag
+    "FaShoppingBag": FaShoppingBag,
+    "FaTag": FaTag
   };
   if (loading) {
     return (
