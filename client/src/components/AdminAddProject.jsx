@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaArrowLeft, FaCheckCircle } from 'react-icons/fa';
+import { FaArrowLeft, FaCheckCircle, FaTag } from 'react-icons/fa';
 import axios from 'axios';
 import { getApiBaseUrl } from '../utils/api';
 
@@ -8,7 +8,8 @@ const ICON_OPTIONS = [
   { value: 'FaShoppingCart', label: 'Shopping Cart' },
   { value: 'FaGavel', label: 'Gavel' },
   { value: 'FaRecycle', label: 'Recycle' },
-  { value: 'FaShoppingBag', label: 'Shopping Bag' }
+  { value: 'FaShoppingBag', label: 'Shopping Bag' },
+  { value: 'FaTag', label: 'Price Tag' }
 ];
 
 const COLOR_OPTIONS = [
