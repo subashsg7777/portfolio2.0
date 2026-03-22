@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt, FaShoppingCart, FaGavel, FaStar, FaBell, FaCode, FaRecycle, FaShoppingBag } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaShoppingCart, FaGavel, FaStar, FaBell, FaCode, FaRecycle, FaShoppingBag, FaTag } from 'react-icons/fa';
 import { SiMongodb, SiExpress, SiReact, SiNodedotjs } from 'react-icons/si';
 import { getApiBaseUrl } from '../utils/api';
 
@@ -63,7 +63,8 @@ const Projects = () => {
     "FaGavel": FaGavel,
     "FaRecycle": FaRecycle,
     "FaShoppingBag": FaShoppingBag,
-    "FaBell": FaBell
+    "FaBell": FaBell,
+    "FaTag": FaTag
   };
 
   const techIcons = {
